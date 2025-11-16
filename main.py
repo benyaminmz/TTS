@@ -21,7 +21,7 @@ logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 # تنظیمات ربات
-TOKEN = "7574303416:AAHbsLyKNKYP5VA3UA1FIVGFGNpUae2RiqY"
+TOKEN = "7520523575:AAGwldAeNo6CZJ4W7USI9dRPyPdbsM2VKFI"
 MAX_TEXT_LENGTH = 1000  # حداکثر طول متن
 MAX_FEELING_LENGTH = 500  # حداکثر طول حس
 
