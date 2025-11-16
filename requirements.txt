@@ -1,0 +1,9 @@
+python-telegram-bot[job-queue]>=21.0
+python-telegram-bot[webhooks]>=20.7
+requests>=2.31.0
+beautifulsoup4>=4.12.3
+fastapi>=0.110.0
+uvicorn>=0.29.0
+pillow>=10.2.0
+rembg>=2.0.59
+onnxruntime>=1.15.1
