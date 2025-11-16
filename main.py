@@ -22,6 +22,7 @@ logger = logging.getLogger(__name__)
 
 # تنظیمات ربات
 TOKEN = "7520523575:AAGwldAeNo6CZJ4W7USI9dRPyPdbsM2VKFI"
+POLLINATIONS_TOKEN = "1-Iv25-WqtWmtgwW"  # توکن API Pollinations
 MAX_TEXT_LENGTH = 1000  # حداکثر طول متن
 MAX_FEELING_LENGTH = 500  # حداکثر طول حس
 
@@ -50,10 +51,18 @@ def _generate_audio_sync(text, instructions, voice, output_file):
     
     base_url = "https://text.pollinations.ai/"
     encoded_prompt = urllib.parse.quote(prompt)
-    url = f"{base_url}{encoded_prompt}?model=openai-audio&voice={voice}"
+    
+    # اضافه کردن توکن به URL
+    # ابتدا توکن را از متغیر محیطی یا تنظیمات بخوان
+    pollinations_token = os.getenv("POLLINATIONS_TOKEN", POLLINATIONS_TOKEN)
+    
+    # اضافه کردن توکن به query parameter (API Pollinations توکن را به این صورت می‌خواهد)
+    encoded_token = urllib.parse.quote(pollinations_token)
+    url = f"{base_url}{encoded_prompt}?model=openai-audio&voice={voice}&token={encoded_token}"
     
     try:
-        logger.info(f"ارسال درخواست GET به API: {url[:100]}...")
+        logger.info(f"ارسال درخواست GET به API با توکن...")
+        # API Pollinations توکن را از query parameter می‌خواند
         response = requests.get(url, timeout=60, stream=True)
         if response.status_code == 200:
             with open(output_file, "wb") as f:
